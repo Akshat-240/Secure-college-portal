@@ -17,22 +17,21 @@ def get_db():
     return conn
 
 def init_db():
-    if not os.path.exists(DB_NAME):
-        conn = get_db()
-        cursor = conn.cursor()
-        cursor.execute("""
-            CREATE TABLE IF NOT EXISTS users (
-                id INTEGER PRIMARY KEY AUTOINCREMENT,
-                username TEXT UNIQUE NOT NULL,
-                password TEXT NOT NULL,
-                role TEXT NOT NULL,
-                failed_attempts INTEGER DEFAULT 0,
-                is_locked BOOLEAN DEFAULT 0
-            )
-        """)
-        conn.commit()
-        conn.close()
-        print("Database initialized.")
+    conn = get_db()
+    cursor = conn.cursor()
+    cursor.execute("""
+        CREATE TABLE IF NOT EXISTS users (
+            id INTEGER PRIMARY KEY AUTOINCREMENT,
+            username TEXT UNIQUE NOT NULL,
+            password TEXT NOT NULL,
+            role TEXT NOT NULL,
+            failed_attempts INTEGER DEFAULT 0,
+            is_locked BOOLEAN DEFAULT 0
+        )
+    """)
+    conn.commit()
+    conn.close()
+    print("Database initialized.")
 
 # ---------- HOME ----------
 @app.route("/")
