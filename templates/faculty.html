@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Faculty dashboard - manage students, attendance and marks">
+    <title>Faculty Dashboard - Secure College Portal</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body>
+    <main class="container container--wide">
+        <header>
+            <h1>Faculty Dashboard</h1>
+            <p class="welcome-text">Welcome back, <strong>Faculty</strong>!</p>
+        </header>
+
+        <section class="dashboard-section">
+            <h2>Management Tools</h2>
+            <nav class="dashboard-grid">
+                <a class="dashboard-card" href="/view_students" title="View complete student list">
+                    <span class="card-icon">👥</span>
+                    <span class="card-title">Students</span>
+                    <span class="card-description">View complete student list</span>
+                </a>
+                <a class="dashboard-card" href="/attendance" title="Mark student attendance">
+                    <span class="card-icon">📋</span>
+                    <span class="card-title">Attendance</span>
+                    <span class="card-description">Mark daily attendance</span>
+                </a>
+                <a class="dashboard-card" href="/marks" title="Upload student marks and grades">
+                    <span class="card-icon">📊</span>
+                    <span class="card-title">Marks</span>
+                    <span class="card-description">Upload grades</span>
+                </a>
+                <a class="dashboard-card" href="/notices" title="Post announcements and notices">
+                    <span class="card-icon">📢</span>
+                    <span class="card-title">Notices</span>
+                    <span class="card-description">Post announcements</span>
+                </a>
+            </nav>
+        </section>
+
+        <footer>
+            <a href="/logout" class="btn btn-logout" title="Sign out of your account">Logout</a>
+        </footer>
+    </main>
+</body>
+
+</html>

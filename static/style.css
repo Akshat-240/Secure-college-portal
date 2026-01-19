@@ -1,0 +1,305 @@
+/* Modern Glassmorphic Design System */
+:root {
+    --primary-color: #6366f1;
+    --primary-hover: #4f46e5;
+    --bg-gradient-start: #4c1d95;
+    --bg-gradient-end: #0f172a;
+    --card-bg: rgba(255, 255, 255, 0.95);
+    --text-main: #1e293b;
+    --text-secondary: #64748b;
+    --success-bg: #dcfce7;
+    --success-text: #166534;
+    --error-bg: #fee2e2;
+    --error-text: #991b1b;
+    --input-border: #cbd5e1;
+    --input-focus: #818cf8;
+    --radius-lg: 16px;
+    --radius-md: 8px;
+    --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+}
+
+* {
+    box-sizing: border-box;
+    font-family: 'Inter', system-ui, -apple-system, sans-serif;
+    -webkit-font-smoothing: antialiased;
+}
+
+body {
+    margin: 0;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
+    background-size: 400% 400%;
+    animation: gradient 15s ease infinite;
+    padding: 20px;
+}
+
+@keyframes gradient {
+    0% {
+        background-position: 0% 50%;
+    }
+
+    50% {
+        background-position: 100% 50%;
+    }
+
+    100% {
+        background-position: 0% 50%;
+    }
+}
+
+.container {
+    background: rgba(255, 255, 255, 0.85);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border-radius: var(--radius-lg);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    padding: 3rem;
+    width: 100%;
+    max-width: 450px;
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+    animation: slideUp 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@keyframes slideUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px) scale(0.95);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+h1 {
+    color: var(--text-main);
+    font-size: 2rem;
+    font-weight: 800;
+    margin-bottom: 0.5rem;
+    text-align: center;
+    letter-spacing: -0.025em;
+}
+
+p {
+    color: var(--text-secondary);
+    text-align: center;
+    margin-bottom: 2rem;
+    line-height: 1.6;
+}
+
+/* Forms */
+fieldset {
+    border: none;
+    padding: 0;
+    margin: 0;
+}
+
+legend {
+    display: none;
+    /* Hide legend for cleaner look, but keep structure for a11y */
+}
+
+.form-group {
+    margin-bottom: 1.5rem;
+}
+
+label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: 600;
+    color: var(--text-main);
+    font-size: 0.925rem;
+}
+
+input[type="text"],
+input[type="password"],
+select {
+    width: 100%;
+    padding: 0.875rem 1rem;
+    border: 2px solid var(--input-border);
+    border-radius: var(--radius-md);
+    font-size: 1rem;
+    transition: all 0.2s;
+    background: rgba(255, 255, 255, 0.9);
+}
+
+input:focus,
+select:focus {
+    outline: none;
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 4px rgba(99, 102, 241, 0.1);
+    background: #fff;
+}
+
+/* Buttons */
+.btn {
+    display: block;
+    width: 100%;
+    padding: 0.875rem;
+    background: var(--primary-color);
+    color: white;
+    border: none;
+    border-radius: var(--radius-md);
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    text-decoration: none;
+    text-align: center;
+    transition: all 0.2s;
+    box-shadow: 0 4px 6px -1px rgba(99, 102, 241, 0.3);
+}
+
+.btn:hover {
+    background: var(--primary-hover);
+    transform: translateY(-2px);
+    box-shadow: 0 10px 15px -3px rgba(99, 102, 241, 0.4);
+}
+
+.btn:active {
+    transform: translateY(0);
+}
+
+.btn-group {
+    display: grid;
+    gap: 1rem;
+}
+
+/* Messages */
+.message {
+    padding: 1rem;
+    border-radius: var(--radius-md);
+    margin-bottom: 1.5rem;
+    font-weight: 500;
+    text-align: center;
+}
+
+.error {
+    background: var(--error-bg);
+    color: var(--error-text);
+}
+
+.success {
+    background: var(--success-bg);
+    color: var(--success-text);
+}
+
+/* Links */
+nav {
+    margin-top: 2rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid var(--input-border);
+    text-align: center;
+}
+
+nav p {
+    margin: 0.5rem 0;
+    font-size: 0.925rem;
+}
+
+nav a {
+    color: var(--primary-color);
+    text-decoration: none;
+    font-weight: 600;
+}
+
+nav a:hover {
+    text-decoration: underline;
+}
+
+
+/* Dashboard Styles */
+.container--wide {
+    max-width: 1000px;
+    padding: 2rem;
+}
+
+header {
+    text-align: center;
+    margin-bottom: 3rem;
+}
+
+.welcome-text {
+    font-size: 1.1rem;
+    opacity: 0.9;
+}
+
+.dashboard-section h2 {
+    color: var(--text-main);
+    font-size: 1.5rem;
+    margin-bottom: 1.5rem;
+    border-bottom: 2px solid rgba(0, 0, 0, 0.1);
+    padding-bottom: 0.5rem;
+}
+
+.dashboard-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1.5rem;
+    margin-bottom: 2rem;
+}
+
+.dashboard-card {
+    background: rgba(255, 255, 255, 0.6);
+    padding: 2rem;
+    border-radius: var(--radius-md);
+    text-decoration: none;
+    color: var(--text-main);
+    transition: all 0.3s ease;
+    border: 1px solid rgba(255, 255, 255, 0.4);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+
+.dashboard-card:hover {
+    background: rgba(255, 255, 255, 0.95);
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+}
+
+.card-icon {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+    display: block;
+}
+
+.card-title {
+    font-size: 1.25rem;
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+    color: var(--primary-color);
+}
+
+.card-description {
+    font-size: 0.9rem;
+    color: var(--text-secondary);
+}
+
+.btn-logout {
+    background: var(--error-bg);
+    color: var(--error-text);
+    border: 1px solid var(--error-bg);
+    max-width: 200px;
+    margin: 2rem auto 0;
+}
+
+.btn-logout:hover {
+    background: #fecaca;
+    box-shadow: 0 4px 12px rgba(220, 38, 38, 0.2);
+}
+
+/* Responsive Dashboard */
+@media (max-width: 768px) {
+    .container--wide {
+        padding: 1.5rem;
+    }
+
+    .dashboard-grid {
+        grid-template-columns: 1fr;
+    }
+}

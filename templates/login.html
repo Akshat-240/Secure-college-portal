@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="College login portal">
+    <title>Login - Secure College Portal</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body>
+    <main class="container">
+        <h1>Login</h1>
+
+        <form method="POST" action="/login" novalidate>
+            <fieldset>
+                <legend>Login Credentials</legend>
+
+                <div class="form-group">
+                    <label for="username" class="required">Username</label>
+                    <input type="text" id="username" name="username" placeholder="Enter your username" required
+                        aria-required="true" autocomplete="username">
+                </div>
+
+                <div class="form-group">
+                    <label for="password" class="required">Password</label>
+                    <input type="password" id="password" name="password" placeholder="Enter your password" required
+                        aria-required="true" autocomplete="current-password">
+                </div>
+
+                <button type="submit" class="btn" aria-label="Submit login form">Login</button>
+            </fieldset>
+        </form>
+
+        <nav>
+            <p>Don't have an account? <a href="/register" title="Create a new account">Create account</a></p>
+            <p><a href="/" title="Return to home page">← Back to Home</a></p>
+        </nav>
+    </main>
+</body>
+
+</html>
