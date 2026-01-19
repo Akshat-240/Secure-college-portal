@@ -190,6 +190,20 @@ def admin():
         return redirect("/login")
     return render_template("admin.html")
 
+# ---------- ADMIN USERS VIEW ----------
+@app.route("/admin/users")
+def admin_users():
+    if session.get("role") != "admin":
+        return redirect("/login")
+    
+    db = get_db()
+    cur = db.cursor()
+    cur.execute("SELECT id, username, password, role, failed_attempts, is_locked FROM users")
+    users = cur.fetchall()
+    db.close()
+    
+    return render_template("admin_users.html", users=users)
+
 # ---------- LOGOUT ----------
 @app.route("/logout")
 def logout():

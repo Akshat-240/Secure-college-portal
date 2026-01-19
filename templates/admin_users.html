@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Database Records - Secure Portal</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        .table-container {
+            overflow-x: auto;
+            margin-top: 20px;
+            background: rgba(255, 255, 255, 0.5);
+            /* Slight additional background for table */
+            border-radius: 12px;
+            box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.5);
+            /* Subtle inner border */
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            color: #1e293b;
+            /* Dark text for readability */
+            font-size: 0.9rem;
+        }
+
+        th,
+        td {
+            text-align: left;
+            padding: 16px;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+            /* Grey border */
+        }
+
+        th {
+            background-color: rgba(248, 250, 252, 0.5);
+            /* Light grey header */
+            color: #64748b;
+            /* Secondary text color for headers */
+            font-weight: 600;
+            text-transform: uppercase;
+            font-size: 0.75rem;
+            letter-spacing: 0.05em;
+        }
+
+        tr:last-child td {
+            border-bottom: none;
+        }
+
+        tr:hover {
+            background-color: rgba(255, 255, 255, 0.6);
+        }
+
+        .hash-cell {
+            font-family: 'JetBrains Mono', 'Fira Code', monospace;
+            font-size: 0.8rem;
+            color: #64748b;
+            max-width: 150px;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+        }
+
+        .status-badge {
+            padding: 4px 10px;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            font-weight: 700;
+            display: inline-block;
+        }
+
+        .status-active {
+            background-color: #dcfce7;
+            color: #166534;
+        }
+
+        .status-locked {
+            background-color: #fee2e2;
+            color: #991b1b;
+        }
+
+        .role-badge {
+            text-transform: capitalize;
+            font-weight: 500;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container container--wide">
+        <header class="dashboard-header">
+            <h1>Database Records</h1>
+            <p>Admin View: All registered users and secure hashes.</p>
+        </header>
+
+        <div class="table-container">
+            <table>
+                <thead>
+                    <tr>
+                        <th width="50">ID</th>
+                        <th>Username</th>
+                        <th>Role</th>
+                        <th>Hashed Password (Salted)</th>
+                        <th>Attempts</th>
+                        <th>Status</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for user in users %}
+                    <tr>
+                        <td>#{{ user[0] }}</td>
+                        <td style="font-weight: 600;">{{ user[1] }}</td>
+                        <td><span class="role-badge">{{ user[3] }}</span></td>
+                        <td class="hash-cell" title="{{ user[2] }}">{{ user[2] }}</td>
+                        <td style="text-align: center;">{{ user[4] }}</td>
+                        <td>
+                            {% if user[5] %}
+                            <span class="status-badge status-locked">LOCKED</span>
+                            {% else %}
+                            <span class="status-badge status-active">ACTIVE</span>
+                            {% endif %}
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+
+        <div style="margin-top: 30px; text-align: center;">
+            <a href="/admin" class="btn">Back to Dashboard</a>
+        </div>
+    </div>
+</body>
+
+</html>
