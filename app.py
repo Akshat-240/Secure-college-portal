@@ -6,7 +6,10 @@ import view_users
 
 app = Flask(__name__)
 app.secret_key = "secret123"
-DB_NAME = "college.db"
+
+# Ensure absolute path for the database (Critical for PythonAnywhere/Deployments)
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+DB_NAME = os.path.join(BASE_DIR, "college.db")
 
 # ---------- DATABASE ----------
 def get_db():
@@ -196,4 +199,6 @@ def logout():
 
 if __name__ == "__main__":
     init_db()
-    app.run(debug=True)
+    port = int(os.environ.get("PORT", 5000))
+    # host='0.0.0.0' allows access from other devices on the network
+    app.run(host='0.0.0.0', port=port, debug=True)
