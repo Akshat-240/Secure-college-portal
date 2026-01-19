@@ -197,8 +197,10 @@ def logout():
     session.clear()
     return redirect("/login")
 
+# Initialize DB on start (Important for PythonAnywhere/WSGI)
+init_db()
+
 if __name__ == "__main__":
-    init_db()
     port = int(os.environ.get("PORT", 5000))
     # host='0.0.0.0' allows access from other devices on the network
     app.run(host='0.0.0.0', port=port, debug=True)
