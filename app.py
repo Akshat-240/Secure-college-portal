@@ -204,6 +204,34 @@ def admin_users():
     
     return render_template("admin_users.html", users=users)
 
+# ---------- ADMIN DELETE USER ----------
+@app.route("/admin/delete_user/<int:user_id>", methods=["POST"])
+def delete_user(user_id):
+    if session.get("role") != "admin":
+        return redirect("/login")
+    
+    db = get_db()
+    cur = db.cursor()
+    
+    # Optional: Prevent deleting self (if you want)
+    # cur.execute("SELECT username FROM users WHERE id=?", (user_id,))
+    # user = cur.fetchone()
+    # if user and user[0] == session.get("username"):
+    #     db.close()
+    #     return "Cannot delete yourself."
+
+    cur.execute("DELETE FROM users WHERE id=?", (user_id,))
+    db.commit()
+    db.close()
+    
+    # Update the view file automatically
+    try:
+        view_users.view_users()
+    except Exception as e:
+        print(f"Error updating view file: {e}")
+        
+    return redirect("/admin/users")
+
 # ---------- LOGOUT ----------
 @app.route("/logout")
 def logout():
